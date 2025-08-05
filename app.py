@@ -1,9 +1,19 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template, send_from_directory
 from flask_cors import CORS
 import random
+import os
 
 app = Flask(__name__)
 CORS(app)  # This allows the frontend to make requests to this server
+
+# --- Add this route to serve the main HTML page ---
+@app.route('/')
+def index():
+    # This will look for index.html in a 'templates' folder
+    # However, to make it work directly from your current folder structure,
+    # we can serve it as a static file.
+    return send_from_directory('.', 'index.html')
+
 
 def is_valid(board, row, col, num):
     """Checks if it's valid to place a number in a given cell."""
@@ -70,7 +80,8 @@ def get_sudoku_puzzle():
 
 if __name__ == '__main__':
     # To run this:
-    # 1. Install Flask and Flask-Cors: pip install Flask Flask-Cors
-    # 2. Run the script: python your_script_name.py
-    # 3. The API will be available at http://127.0.0.1:5000/api/sudoku
+    # 1. Make sure app.py and index.html are in the same directory.
+    # 2. Install Flask and Flask-Cors: pip install Flask Flask-Cors
+    # 3. Run the script: python app.py
+    # 4. The API will be available at http://127.0.0.1:5000/api/sudoku
     app.run(debug=True)
