@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sudoku Cube</title>
+    <title>Sudokube</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -13,8 +13,51 @@
         <div id="cube-container">
             <div id="loader">Loading Puzzles...</div>
         </div>
-        <div id="controls-panel">
+        <div id="gui-panel">
+            <div class="tab-bar">
+                <button class="tab-btn active" data-tab="slices">Slices</button>
+                <button class="tab-btn" data-tab="game">Game</button>
+                <button class="tab-btn" data-tab="difficulty">Difficulty</button>
+                <button class="tab-btn" data-tab="rules">Rules</button>
             </div>
+            <div class="tab-content">
+                <div id="slices-tab" class="tab-pane active">
+                    </div>
+
+                <div id="game-tab" class="tab-pane">
+                    <h3>Game Statistics</h3>
+                    <div class="stat-item">
+                        <span>Cells Filled:</span>
+                        <span id="cells-filled-stat">0 / 386</span>
+                    </div>
+                    <p class="small-text">More stats and validation features coming soon!</p>
+                </div>
+
+                <div id="difficulty-tab" class="tab-pane">
+                    <h3>New Game</h3>
+                    <div class="setting-item">
+                        <label for="difficulty-select">Difficulty:</label>
+                        <select id="difficulty-select">
+                            <option value="0.4">Easy</option>
+                            <option value="0.5" selected>Medium</option>
+                            <option value="0.6">Hard</option>
+                            <option value="0.7">Expert</option>
+                        </select>
+                    </div>
+                    <button id="new-game-btn" class="gui-button">Start New Game</button>
+                </div>
+
+                <div id="rules-tab" class="tab-pane">
+                    <h3>How to Play</h3>
+                    <p>Sudokube is a 3D extension of classic Sudoku.</p>
+                    <ul>
+                        <li>For each of the 6 faces, every row, column, and 3x3 box must contain the numbers 1 through 9 without repetition.</li>
+                        <li>The key challenge is that the edges and corners are shared between faces. A number placed on an edge must be valid for both faces that share it.</li>
+                        <li>A number placed on a corner must be valid for all three faces that meet there.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>

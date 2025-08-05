@@ -5,6 +5,7 @@
     --border-color: #333;
     --highlight-bg: rgba(74, 144, 226, 0.2);
     --highlight-strong: rgba(74, 144, 226, 0.5);
+    --panel-bg: #222;
 }
 body {
     margin: 0;
@@ -37,11 +38,60 @@ body {
 #cube-container:active {
     cursor: grabbing;
 }
-#controls-panel {
+#loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+}
+
+/* --- GUI Panel Styles --- */
+#gui-panel {
     flex: 1;
-    padding: 1rem;
+    max-width: 350px;
+    background-color: var(--panel-bg);
     border-left: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+}
+.tab-bar {
+    display: flex;
+    border-bottom: 1px solid var(--border-color);
+}
+.tab-btn {
+    flex: 1;
+    padding: 0.75rem 0.5rem;
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    color: var(--text-color);
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+.tab-btn:hover {
+    background-color: var(--border-color);
+}
+.tab-btn.active {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+}
+.tab-content {
+    padding: 1rem;
     overflow-y: auto;
+}
+.tab-pane {
+    display: none;
+}
+.tab-pane.active {
+    display: block;
+}
+
+/* --- CORRECTED Slice View Styles (within tab) --- */
+/* This rule now only applies when the slices tab is active */
+#slices-tab.active {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
@@ -97,13 +147,56 @@ body {
     background-color: var(--highlight-strong);
 }
 .slice-grid .cell.invalid {
-    background-color: #402020; /* Dark red for invalid cells */
+    background-color: #402020;
     cursor: not-allowed;
 }
-#loader {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 20px;
+
+/* --- Styles for New GUI Tab Content --- */
+.tab-pane h3 {
+    margin-top: 0;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
+}
+.tab-pane p {
+    line-height: 1.6;
+}
+.tab-pane ul {
+    padding-left: 1.25rem;
+}
+.tab-pane li {
+    margin-bottom: 0.5rem;
+}
+.stat-item, .setting-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+.small-text {
+    font-size: 0.8rem;
+    color: #aaa;
+    text-align: center;
+}
+.gui-button {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-color);
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.gui-button:hover {
+    background-color: #3a80d2;
+}
+select {
+    padding: 0.5rem;
+    background-color: var(--border-color);
+    color: var(--text-color);
+    border: 1px solid #555;
+    border-radius: 5px;
 }
