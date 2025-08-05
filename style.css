@@ -1,0 +1,109 @@
+:root {
+    --background-color: #1a1a1a;
+    --text-color: #f0f0f0;
+    --primary-color: #4a90e2;
+    --border-color: #333;
+    --highlight-bg: rgba(74, 144, 226, 0.2);
+    --highlight-strong: rgba(74, 144, 226, 0.5);
+}
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+.header {
+    padding: 1rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    border-bottom: 1px solid var(--border-color);
+    text-align: center;
+}
+.main-container {
+    display: flex;
+    flex-grow: 1;
+    overflow: hidden;
+}
+#cube-container {
+    flex: 3;
+    position: relative;
+    min-width: 0;
+    cursor: grab;
+}
+#cube-container:active {
+    cursor: grabbing;
+}
+#controls-panel {
+    flex: 1;
+    padding: 1rem;
+    border-left: 1px solid var(--border-color);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+.slice-view {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.slice-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 700;
+}
+.slice-controls button {
+    background: var(--border-color);
+    border: none;
+    color: var(--text-color);
+    font-size: 1rem;
+    width: 25px;
+    height: 25px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.slice-grid {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(9, 1fr);
+    border: 2px solid var(--primary-color);
+    aspect-ratio: 1 / 1;
+}
+.slice-grid .cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: clamp(8px, 0.9vw, 14px);
+    border: 1px solid var(--border-color);
+    background-color: #2a2a2a;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.slice-grid .cell:hover {
+    background-color: #444;
+}
+.slice-grid .cell.initial {
+    font-weight: 700;
+}
+.slice-grid .cell.user-input {
+    color: var(--primary-color);
+}
+.slice-grid .cell.selected {
+    background-color: var(--highlight-strong);
+}
+.slice-grid .cell.invalid {
+    background-color: #402020; /* Dark red for invalid cells */
+    cursor: not-allowed;
+}
+#loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+}
