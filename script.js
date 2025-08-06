@@ -314,4 +314,7 @@ function onWindowResize() {
     renderer.setSize(cubeContainer.clientWidth, cubeContainer.clientHeight);
 }
 
-init();
+// THE FIX: Wait for the DOM to be fully ready before initializing the app.
+window.addEventListener('DOMContentLoaded', (event) => {
+    init();
+});
