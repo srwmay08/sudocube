@@ -200,3 +200,91 @@ select {
     border: 1px solid #555;
     border-radius: 5px;
 }
+
+
+/* --- Highlighting Styles --- */
+.slice-grid .cell.related {
+    background-color: var(--highlight-bg);
+}
+
+/* --- Hint Modal Styles --- */
+#hint-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: none; /* Initially hidden */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#hint-modal-content {
+    background-color: var(--panel-bg);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    width: 90%;
+    max-width: 350px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+#hint-modal-content h3 {
+    margin: 0;
+    color: var(--primary-color);
+}
+
+#hint-modal-content p {
+    margin: 0;
+    line-height: 1.6;
+    min-height: 50px; /* Prevent layout shift */
+}
+
+.modal-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.modal-arrow-btn {
+    background: none;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modal-arrow-btn:hover {
+    background-color: var(--border-color);
+}
+.modal-arrow-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+#hint-step-indicator {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.step-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--border-color);
+}
+
+.step-dot.active {
+    background-color: var(--primary-color);
+}
